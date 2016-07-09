@@ -1,4 +1,4 @@
-# React Boilerplate
+# React/Redux Boilerplate
 
 React.JS boilerplate intended to be deployed to Heroku application.
 
