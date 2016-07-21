@@ -1,4 +1,7 @@
-import { renderComponent, expect } from '../test_helper';
+
+import { expect } from 'chai';
+import { sRender } from '../test_helper';
+import sinon from 'sinon';
 
 import Hello from '../../src/components/hello';
 import World from '../../src/components/world';
@@ -11,7 +14,7 @@ describe('Lets write tests!' , () => {
     const state = {};
 
     beforeEach(() => {
-      component = renderComponent(Hello, props, state);
+      component = sRender(Hello);
     });
 
     it('renders something', () => {
@@ -27,7 +30,7 @@ describe('Lets write tests!' , () => {
     const state = {};
 
     beforeEach(() => {
-      component = renderComponent(World, props, state);
+      component = sRender(World);
     });
 
     it('renders something', () => {

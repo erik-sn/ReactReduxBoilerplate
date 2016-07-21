@@ -1,12 +1,9 @@
-import _$ from 'jquery';
+import jsdom from 'jsdom';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
-import jsdom from 'jsdom';
-import chai, { expect } from 'chai';
-import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { shallow, mount } from 'enzyme';
 import reducers from '../src/reducers';
 
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -16,26 +13,44 @@ global.navigator = {
   userAgent: 'node.js'
 };
 
-const $ = _$(window);
+window.localStorage = storageMock();
 
-chaiJquery(chai, chai.util, $);
-
-function renderComponent(ComponentClass, props = {}, state = {}) {
-  const componentInstance =  TestUtils.renderIntoDocument(
+export function sRender(ComponentClass, props = {}, state = {}) {
+  return shallow(
     <Provider store={createStore(reducers, state)}>
       <ComponentClass {...props} />
     </Provider>
   );
-
-  return $(ReactDOM.findDOMNode(componentInstance));
 }
 
+export function fRender(ComponentClass, props = {}, state = {}) {
+  return mount(
+    <Provider store={createStore(reducers, state)}>
+      <ComponentClass {...props} />
+    </Provider>
+  );
+}
 
-$.fn.simulate = function(eventName, value) {
-  if (value) {
-    this.val(value);
-  }
-  TestUtils.Simulate[eventName](this[0]);
-};
+function storageMock() {
+  const storage = {};
 
-export {renderComponent, expect};
+  return {
+    setItem(key, value) {
+      storage[key] = value || '';
+    },
+    getItem(key) {
+      return storage[key] || null;
+    },
+    removeItem(key) {
+      delete storage[key];
+    },
+    get length() {
+      return Object.keys(storage).length;
+    },
+    key(i) {
+      const keys = Object.keys(storage);
+      return keys[i] || null;
+    }
+  };
+}
+

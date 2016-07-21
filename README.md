@@ -9,6 +9,6 @@ React.JS boilerplate intended to be deployed to Heroku application.
 - [React Router](https://github.com/reactjs/react-router)
 - [Hot Reloading](https://github.com/gaearon/react-hot-loader)
 - [Isomorphic/Server Side Rendering](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
-- [Mocha/Chai Testing](https://mochajs.org/)
+- [Mocha/Chai/Enzyme/Sinon Testing](https://mochajs.org/)
 - [SASS](http://sass-lang.com/)
 - [ESlint](http://eslint.org/)
