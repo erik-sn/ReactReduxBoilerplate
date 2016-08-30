@@ -1,19 +1,9 @@
 import jsdom from 'jsdom';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { shallow, mount } from 'enzyme';
 import reducers from '../src/reducers';
-
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.window = global.document.defaultView;
-
-global.navigator = {
-  userAgent: 'node.js'
-};
-
-window.localStorage = storageMock();
 
 export function sRender(ComponentClass, props = {}, state = {}) {
   return shallow(
@@ -50,7 +40,15 @@ function storageMock() {
     key(i) {
       const keys = Object.keys(storage);
       return keys[i] || null;
-    }
+    },
   };
 }
 
+global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.window = global.document.defaultView;
+
+global.navigator = {
+  userAgent: 'node.js',
+};
+
+window.localStorage = storageMock();

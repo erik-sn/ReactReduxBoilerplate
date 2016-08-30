@@ -89,7 +89,6 @@ function renderFullPage(html) {
     <html>
       <head>
         <link rel="stylesheet" href="/static/bundle.min.css">
-        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
       </head>
       <body id="app-body">
         <div class="react-container">${html}</div>
