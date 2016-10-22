@@ -1,7 +1,3 @@
-if (process.env.BROWSER) {
-  require('../../static/sass/style.scss');
-}
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -15,7 +11,6 @@ class Hello extends Component {
       </div>
     );
   }
-
 }
 
 function mapStateToProps(state) {
