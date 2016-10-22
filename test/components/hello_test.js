@@ -23,20 +23,5 @@ describe('Lets write tests!' , () => {
 
 
   });
-
-  describe('World' , () => {
-    let component;
-    const props = {};
-    const state = {};
-
-    beforeEach(() => {
-      component = sRender(World);
-    });
-
-    it('renders something', () => {
-      expect(component).to.exist;
-    });
-
-  });
   
 });

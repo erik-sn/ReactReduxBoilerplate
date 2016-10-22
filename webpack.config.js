@@ -50,7 +50,7 @@ module.exports = {
     // react-hot MUST be before babel
     loaders: [{
       test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['babel'],
       include: path.join(__dirname, 'src'),
     },
     {
@@ -62,12 +62,13 @@ module.exports = {
        * reloaded on each save.
        */
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass'],
+      loaders: ['style', 'css', 'postcss-loader', 'sass'],
     },
     {
-      test: /\.jpe?g$|\.gif$|\.png$/i,
-      loader: 'file-loader?name=/img/[name].[ext]',
+      test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+      loader: 'file-loader',
     },
     ],
   },
+  postcss: [require('autoprefixer')],
 };

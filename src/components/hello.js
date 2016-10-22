@@ -1,15 +1,18 @@
+if (process.env.BROWSER) {
+  require('../../static/sass/style.scss');
+}
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-if (process.env.BROWSER) {
-  require('../sass/style.scss');
-}
 
 class Hello extends Component {
 
   render() {
     return (
-      <div className="hello-container">Hello!</div>
+      <div className="hello-container">
+        Hello!
+        <img src="/static/media/tictactoe.png" />
+      </div>
     );
   }
 

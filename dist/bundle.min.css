@@ -1,2 +1,2 @@
-.hello-container{font-size:30px;color:blue}
+.hello-container{flex:1 1 auto;display:flex;font-size:30px;color:blue}
 /*# sourceMappingURL=bundle.min.css.map*/
