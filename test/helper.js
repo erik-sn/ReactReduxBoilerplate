@@ -1,8 +1,10 @@
 import jsdom from 'jsdom';
 import chai from 'chai';
 import dirtyChai from 'dirty-chai';
+import chaiImmutable from 'chai-immutable';
 
 chai.use(dirtyChai);
+chai.use(chaiImmutable);
 
 function storageMock() {
   const storage = {};

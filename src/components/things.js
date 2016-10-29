@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
+import { Link } from 'react-router';
 
 import { addThing, removeThing } from '../actions/index';
 
 export const test = (props) => {
-  const things = [];
+  let things = List.of();
   for (let i = 1; i <= props.things; i += 1) {
-    things.push(<div key={i}>{`Thing #${i}`}</div>);
+    things = things.push(<div key={i}>{`Thing #${i}`}</div>);
   }
   return (
     <div className="thing-container">
+      <Link to="/">Home</Link>
       <button onClick={props.addThing}>Add</button>
       <button onClick={props.removeThing}>Remove</button>
       <div>
@@ -21,8 +24,8 @@ export const test = (props) => {
   );
 };
 
-function mapStateToProps({ things }) {
-  return { things };
+function mapStateToProps(state) {
+  return { things: state.get('things') };
 }
 
 export default connect(mapStateToProps, { addThing, removeThing })(test);

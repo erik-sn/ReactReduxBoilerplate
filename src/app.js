@@ -13,7 +13,12 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
                                                   window.__REDUX_DEVTOOLS_EXTENSION__());
 // add enhanced history configuration where nav events are synced to redux store
-const history = syncHistoryWithStore(browserHistory, store);
+// this uses the immutablejs implementation
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState(state) {
+    return state.get('routing').toJS();
+  },
+});
 
 const App = () => (
   <Provider store={store}>
