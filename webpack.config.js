@@ -57,33 +57,35 @@ module.exports = {
     }),
   ],
   module: {
-    preLoaders: [
+    /**
+     * Run linting to generate warnings, then transpile through babel
+     */
+    loaders: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint',
-        include: 'src',
-      }
-    ],
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel', 'eslint'],
-      include: path.join(__dirname, 'src'),
-    },
-    {
-      /*
-       *  test matches all SASS files. Transpiler reads right to left: takes in sass
-       *  turns it into css, and then adds it as <style> tags to the html.
-       *
-       * This setup allows for hot reloading of CSS because the <style> tags are
-       * reloaded on each save.
-       */
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'postcss-loader', 'sass'],
-    },
-    {
-      test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-      loader: 'file-loader',
-    },
+        test: /\.js$/,
+        loaders: ['babel', 'eslint'],
+        include: path.join(__dirname, 'src'),
+      },
+      {
+        test: /\.js$/,
+        loaders: ['eslint'],
+        include: path.join(__dirname, 'test'),
+      },
+      {
+        /*
+        *  test matches all SASS files. Transpiler reads right to left: takes in sass
+        *  turns it into css, and then adds it as <style> tags to the html.
+        *
+        * This setup allows for hot reloading of CSS because the <style> tags are
+        * reloaded on each save.
+        */
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'postcss-loader', 'sass'],
+      },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        loader: 'file-loader',
+      },
     ],
   },
   postcss: [autoprefixer],
