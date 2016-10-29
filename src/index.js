@@ -1,16 +1,31 @@
+/* eslint-disable  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { Router, browserHistory } from 'react-router';
+import { AppContainer } from 'react-hot-loader';
 
-import reducers from './reducers';
-import routes from './routes';
+// keep all style imports in this js file so webpack imports them
+import style from '../static/style';
+import App from './app';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-const store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const rootEl = document.getElementById('root');
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory} routes={routes} />
-  </Provider>
-  , document.querySelector('.react-container'));
+  <AppContainer>
+    <App />
+  </AppContainer>,
+  rootEl
+);
+
+if (module.hot) {
+  module.hot.accept('./app', () => {
+    // If you use Webpack 2 in ES modules mode, you can
+    // use <App /> here rather than require() a <NextApp />.
+    const NextApp = require('./app').default;
+    ReactDOM.render(
+      <AppContainer>
+         <NextApp />
+      </AppContainer>,
+      rootEl
+    );
+  });
+}
+

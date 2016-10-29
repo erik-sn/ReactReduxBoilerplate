@@ -1,25 +1,5 @@
-if (process.env.BROWSER) {
-  require('../../static/sass/style.scss');
-}
+import React from 'react';
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+const Hello = () => <h1 onClick={() => 'no'}>Hello!</h1>;
 
-class Hello extends Component {
-
-  render() {
-    return (
-      <div className="hello-container">
-        Hello!
-        <img src="/static/media/tictactoe.png" />
-      </div>
-    );
-  }
-
-}
-
-function mapStateToProps(state) {
-  return { state };
-}
-
-export default connect(mapStateToProps, { })(Hello);
+export default Hello;

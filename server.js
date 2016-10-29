@@ -1,10 +1,12 @@
+/* eslint-disable */
+
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
   
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
-  hot: true, //enable hot reloading
+  hot: true,  //enable hot reloading
   /**
    * This server will only server our index.html file at the root 
    * i.e. localhost:3000/ - any url beyond that will generate a 404
@@ -18,4 +20,5 @@ new WebpackDevServer(webpack(config), {
   if (err) {
     return console.log(err);
   }
+  console.log('Listening at http://localhost:3000/');
 });

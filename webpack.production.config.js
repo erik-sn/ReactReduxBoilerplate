@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -46,7 +48,7 @@ module.exports = {
     // copy images from the media folder to the dist folder
     new CopyWebpackPlugin([
         { context: './static/media/', from: '*' },
-    ]),    
+    ]),
   ],
   module: {
     loaders: [{
@@ -57,7 +59,7 @@ module.exports = {
     {
     // send all SASS files into the ExtractTextPlugin
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('css!postcss!sass'),
+      loader: ExtractTextPlugin.extract('isomorphic-style!css!postcss!sass'),
     },
 ],
   },

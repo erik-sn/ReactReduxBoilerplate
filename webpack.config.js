@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * This config file is specific to development. When we run "node server.js"
  * the server.js file uses the WebpackDevServer with this file as a configuration.
@@ -8,12 +10,19 @@
 var path = require('path');
 var webpack = require('webpack');
 
+// automatically add vendor prefixes to transpiled css
+var autoprefixer = require('autoprefixer');
+
 module.exports = {
+  eslint: {
+    configFile: './.eslintrc.json',
+  },
   // see https://webpack.github.io/docs/configuration.html#devtool
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
+    'react-hot-loader/patch',
     './src/index',
   ],
   output: {
@@ -43,14 +52,21 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         BROWSER: JSON.stringify(true),
+        NODE_ENV: JSON.stringify('development'),
       },
     }),
   ],
   module: {
-    // react-hot MUST be before babel
+    preLoaders: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'eslint',
+        include: 'src',
+      }
+    ],
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loaders: ['babel', 'eslint'],
       include: path.join(__dirname, 'src'),
     },
     {
@@ -70,5 +86,5 @@ module.exports = {
     },
     ],
   },
-  postcss: [require('autoprefixer')],
+  postcss: [autoprefixer],
 };
