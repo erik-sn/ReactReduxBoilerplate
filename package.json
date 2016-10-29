@@ -6,11 +6,12 @@
   "repository": "",
   "scripts": {
     "dev": "node server.js",
-    "test:watch": "npm run test -- --watch",
+    "lint": "eslint ./src ./test",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm run test -- --watch",
+    "coverage": "istanbul cover _mocha --require helper.js -- --compilers js:babel-core/register --recursive test/*",
     "build": "webpack -p --config webpack.production.config.js --progress --profile --colors",
-    "start": "nodemon server.production.js --exec babel-node",
-    "lint": "eslint ./src ./test"
+    "start": "nodemon server.production.js --exec babel-node"
   },
   "author": "",
   "license": "ISC",
@@ -36,7 +37,7 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "extract-text-webpack-plugin": "^1.0.1",
-    "isomorphic-style-loader": "^1.0.0",
+    "istanbul": "^1.0.0-alpha.2",
     "jquery": "^3.1.1",
     "jsdom": "^9.8.0",
     "mocha": "^3.1.2",

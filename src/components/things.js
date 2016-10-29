@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { addThing, removeThing } from '../actions/index';
 
-const Things = (props) => {
+export const Things = (props) => {
   const things = [];
   for (let i = 1; i <= props.things; i += 1) {
     things.push(<div key={i}>{`Thing #${i}`}</div>);
