@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 require('es6-promise').polyfill();
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -20,7 +21,7 @@ module.exports = {
     * resource, and our Isomorphic html points to it to retrieve these
     * files.
     */
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist'),
     filename: 'bundle.min.js',
     publicPath: '/static/',
   },
@@ -51,16 +52,18 @@ module.exports = {
     ]),
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src'),
-    },
-    {
-    // send all SASS files into the ExtractTextPlugin
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('isomorphic-style!css!postcss!sass'),
-    },
-],
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, '../src'),
+      },
+      {
+      // send all SASS files into the ExtractTextPlugin
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css!postcss!sass'),
+      },
+    ],
   },
+  postcss: [autoprefixer],
 };

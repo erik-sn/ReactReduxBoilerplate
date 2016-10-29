@@ -64,12 +64,12 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel', 'eslint'],
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, '../src'),
       },
       {
         test: /\.js$/,
         loaders: ['eslint'],
-        include: path.join(__dirname, 'test'),
+        include: path.join(__dirname, '../test'),
       },
       {
         /*

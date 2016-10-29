@@ -26,8 +26,8 @@ import { renderToString } from 'react-dom/server';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-import reducers from './src/reducers/';
-import routes from './src/routes';
+import reducers from '../src/reducers/';
+import routes from '../src/routes';
 
 
 const app = express(); // delcare application

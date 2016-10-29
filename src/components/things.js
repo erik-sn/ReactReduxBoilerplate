@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { addThing, removeThing } from '../actions/index';
 
-export const Things = (props) => {
+export const test = (props) => {
   const things = [];
   for (let i = 1; i <= props.things; i += 1) {
     things.push(<div key={i}>{`Thing #${i}`}</div>);
@@ -25,4 +25,4 @@ function mapStateToProps({ things }) {
   return { things };
 }
 
-export default connect(mapStateToProps, { addThing, removeThing })(Things);
+export default connect(mapStateToProps, { addThing, removeThing })(test);

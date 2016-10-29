@@ -1,6 +1,9 @@
 /node_modules
 /coverage
 /dist
-npm-debug.log
 .idea
 .vscode
+
+npm-debug.log
+webpack-assets.json
+webpack-stats.json
