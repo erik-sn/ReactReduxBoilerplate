@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 import { addThing, removeThing } from '../actions/index';
 
-export const test = (props) => {
+export const Thing = (props) => {
   let things = List.of();
   for (let i = 1; i <= props.things; i += 1) {
     things = things.push(<div key={i}>{`Thing #${i}`}</div>);
@@ -28,4 +28,6 @@ function mapStateToProps(state) {
   return { things: state.get('things') };
 }
 
-export default connect(mapStateToProps, { addThing, removeThing })(test);
+const ThingContainer = connect(mapStateToProps, { addThing, removeThing })(test);
+
+export default ThingContainer;
